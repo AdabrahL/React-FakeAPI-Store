@@ -5,6 +5,10 @@ import ProductDetails from './pages/ProductDetails';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Orders from './pages/Orders';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Shop from './pages/Shop';
 
 const App = () => {
   return (
@@ -14,6 +18,10 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/product/:id' element={<ProductDetails />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/about" element={<About />} /> 
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/shop" element={<Shop />} />
         </Routes>
         <Sidebar />
         

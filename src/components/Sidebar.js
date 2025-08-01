@@ -5,6 +5,9 @@ import { FiTrash2 } from 'react-icons/fi';
 import CartItem from '../components/CartItem';
 import { SidebarContext } from '../contexts/SidebarContext';
 import { CartContext } from '../contexts/CartContext';
+import { useNavigate } from 'react-router-dom';
+import { OrdersContext } from '../contexts/OrdersContext';
+
 
 const Sidebar = () => {
   const { isOpen, handleClose } = useContext(SidebarContext);
@@ -14,6 +17,18 @@ const Sidebar = () => {
   const totalPrice = cart
     .reduce((sum, item) => sum + item.price * item.amount, 0)
     .toFixed(2);
+
+    const { addOrder } = useContext(OrdersContext);
+const navigate = useNavigate();
+
+const handleCheckout = () => {
+  if (cart.length === 0) return;
+
+  addOrder(cart);      // Add current cart items to orders
+  clearCart();         // Clear the cart
+  handleClose();       // Close sidebar (optional)
+  navigate('/orders'); // Navigate to orders page
+};
 
   return (
     <div
@@ -61,14 +76,15 @@ const Sidebar = () => {
             View Cart
           </Link>
         </div>
+<button
+  onClick={handleCheckout}
+  className="bg-primary flex p-4 justify-center 
+  items-center text-white w-full font-medium"
+>
+  Checkout
+</button>
 
-        <Link
-          to="/checkout"
-         className="bg-primary flex p-4 justify-center 
-          items-center text-white w-full font-medium"
-        >
-          Checkout
-        </Link>
+       
       </div>
     </div>
   );

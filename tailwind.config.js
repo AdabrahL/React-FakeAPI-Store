@@ -24,7 +24,15 @@ module.exports = {
       backgroundImage: {
         hero: "url('./img/bg_hero.svg')",
       },
+    },theme: {
+  extend: {
+    colors: {
+      primary: '#1d4ed8', // example blue
+      'primary-dark': '#1e40af'
     },
+  },
+},
+
   },
   plugins: [],
 };
